@@ -3,12 +3,16 @@
 $:.unshift File.expand_path("../../lib", __FILE__)
 require "language_pack"
 
+class LanguagePack::Ruby
+  alias_method :default_config_vars_original, :default_config_vars
+
+  def default_config_vars
+    default_config_vars_original.merge({
+      'PATH' => 'vendor/libsndfile/bin/:vendor/libsndfile/include/:.bin:/usr/local/bin:/usr/bin:/bin'
+    });
+  end
+end
+
 if pack = LanguagePack.detect(ARGV[0], ARGV[1])
   puts pack.release
 end
-
-puts <<EOF
----
-config_vars:
-  PATH: vendor/libsndfile/bin/:vendor/libsndfile/include/:.bin:/usr/local/bin:/usr/bin:/bin
-EOF
