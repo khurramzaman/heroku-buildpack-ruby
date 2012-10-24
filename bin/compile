@@ -11,3 +11,9 @@ if pack = LanguagePack.detect(ARGV[0], ARGV[1])
     pack.compile
   end
 end
+
+SNDFILE_BINARY="https://s3.amazonaws.com/soundcrowd/libsndfile-1.0.tgz"
+SNDFILE_VENDOR="vendor/libsndfile"
+
+`mkdir -p $1/$SNDFILE_VENDOR`
+`curl $SNDFILE_BINARY -o - | tar -xz -C $1/$SNDFILE_VENDOR -f -`
