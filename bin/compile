@@ -15,5 +15,5 @@ end
 SNDFILE_BINARY="https://s3.amazonaws.com/soundcrowd/libsndfile-1.0.tgz"
 SNDFILE_VENDOR="vendor/libsndfile"
 
-`mkdir -p $1/$SNDFILE_VENDOR`
-`curl $SNDFILE_BINARY -o - | tar -xz -C $1/$SNDFILE_VENDOR -f -`
+`mkdir -p #{ARGV[0]}/#{SNDFILE_VENDOR}`
+`curl #{SNDFILE_BINARY} -o - | tar -xz -C #{ARGV[0]}/#{SNDFILE_VENDOR} -f -`
